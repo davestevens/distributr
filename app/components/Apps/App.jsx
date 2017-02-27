@@ -2,10 +2,11 @@
 
 import React, { Component, PropTypes } from "react";
 import { withRouter } from "react-router";
-import { ListItem, ListItemText } from "material-ui/List";
-import Avatar from "material-ui/Avatar";
-/* import avatarOptions from "../../lib/avatar-options";
- */
+import ListGroupItem from "react-bootstrap/lib/ListGroupItem";
+
+const STYLE = {
+  whiteSpace: "pre-wrap"
+}
 
 class App extends Component {
   constructor(props) {
@@ -18,22 +19,17 @@ class App extends Component {
     const { description, name } = this.props;
 
     return (
-      <ListItem button
-                onClick={ this._handleClick }>
-        { this._avatar() }
-        <ListItemText primary={ name }
-                      secondary={ description } />
-      </ListItem>
+      <ListGroupItem header={ name }
+                     href="#"
+                     onClick={ this._handleClick }
+                     style={ STYLE }>
+        { description }
+      </ListGroupItem>
     );
   }
 
-  _avatar() {
-    const { kind } = this.props;
-    const text = kind == "android" ? "A" : "iOS";
-    return <Avatar>{ text }</Avatar>;
-  }
-
-  _handleClick() {
+  _handleClick(event) {
+    event.preventDefault();
     const { id, router } = this.props;
     router.push(`/apps/${ id }`);
   }

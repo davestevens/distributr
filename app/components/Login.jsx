@@ -2,16 +2,13 @@
 
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import Paper from "material-ui/Paper";
-import TextField from "material-ui/TextField";
-import Button from "material-ui/Button";
 import Loading from "./Loading.jsx";
+import FormGroup from "react-bootstrap/lib/FormGroup";
+import ControlLabel from "react-bootstrap/lib/ControlLabel";
+import FormControl from "react-bootstrap/lib/FormControl";
+import HelpBlock from "react-bootstrap/lib/HelpBlock";
+import Button from "react-bootstrap/lib/Button";
 import { login } from "../actions/auth";
-
-const STYLE = {
-  textAlign: "center",
-  padding: 24
-}
 
 class Login extends Component {
   constructor(props) {
@@ -29,32 +26,30 @@ class Login extends Component {
     const { errorMessage, loading } = this.props;
     const hasError = !!errorMessage;
 
-    return(
-      <Paper>
-        <form onSubmit={ this._login }
-              style={ STYLE }>
-          { loading && <Loading /> }
-          <div>
-            <TextField label={ hasError ? errorMessage : "Username" }
-                       type="text"
-                       error={ hasError }
+    return (
+      <form onSubmit={ this._login }>
+        { loading && <Loading /> }
+        <FormGroup bsSize="large"
+                   validationState={ hasError ? "error" : null }>
+          <ControlLabel>Username</ControlLabel>
+          <FormControl type="text"
+                       placeholder="Username"
                        onChange={ (event) => this.setState({ username: event.target.value }) } />
-          </div>
-          <div>
-            <TextField label="Password"
-                       type="password"
+          { hasError && <HelpBlock>{ errorMessage }</HelpBlock> }
+        </FormGroup>
+        <FormGroup bsSize="large">
+          <ControlLabel>Password</ControlLabel>
+          <FormControl type="password"
+                       placeholder="Password"
                        onChange={ (event) => this.setState({ password: event.target.value }) } />
-          </div>
-          <div>
-            <Button type="submit"
-                    raised={ true }
-                    primary={ true }
-                    disabled={ loading }>
-              Login
-            </Button>
-          </div>
-        </form>
-      </Paper>
+        </FormGroup>
+        <Button type="submit"
+                bsStyle="primary"
+                bsSize="large"
+                block>
+          Login
+        </Button>
+      </form>
     );
   }
 
