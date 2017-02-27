@@ -120,5 +120,46 @@ describe("Models: App", () => {
           .catch(done);
       });
     });
+
+    describe("Versions", () => {
+      let app, versions;
+
+      before(done => {
+        App.create({
+          name: "App",
+          description: "Desc",
+          identifier: "com.identifier",
+          kind: "android"
+        })
+          .then(a => {
+            app = a;
+            return models.Version.bulkCreate([
+              { notes: "Notes", number: "v0.0.1" },
+              { notes: "Notes", number: "v0.0.2" }
+            ])
+              .then(result => {
+                versions = result;
+                return app.setVersions(versions)
+              });
+          })
+          .then(() => done())
+          .catch(done);
+      });
+
+      after(done => {
+        app.destroy()
+          .then(() => done())
+          .catch(done);
+      });
+
+      it("has many Versions", (done) => {
+        app.getVersions()
+          .then(associatedVersions => {
+            expect(associatedVersions).to.have.length(2);
+            done();
+          })
+          .catch(done);
+      });
+    });
   });
 });

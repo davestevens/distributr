@@ -59,6 +59,11 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: "app_id",
             otherKey: "segment_id"
           });
+
+          App.hasMany(models.Version, {
+            as: "versions",
+            foreignKey: "app_id"
+          });
         }
       },
       tableName: "apps"
