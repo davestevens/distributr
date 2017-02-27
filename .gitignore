@@ -1,0 +1,11 @@
+# Node
+node_modules
+npm-debug.log
+
+# Config
+.env
+
+# Sequelize
+config/config.json
+db/*
+!db/.keep
