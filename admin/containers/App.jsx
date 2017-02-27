@@ -4,6 +4,7 @@ import React from "react";
 import { Admin, Resource } from "admin-on-rest";
 import authClient from "../lib/auth-client";
 import restClient from "../lib/rest-client";
+import addUpload from "../lib/add-upload";
 import Apps from "../components/Apps";
 import Segments from "../components/Segments";
 import AppSegments from "../components/AppSegments";
@@ -12,7 +13,7 @@ import Versions from "../components/Versions";
 
 const App = () => (
   <Admin authClient={ authClient }
-         restClient={ restClient("/api/admin") }
+         restClient={ addUpload(restClient("/api/admin")) }
          title="Distributr">
     <Resource name="apps" { ...Apps } />
     <Resource name="segments" { ...Segments } />

@@ -3,10 +3,17 @@
 const epilogueAuth = require("./epilogue-auth");
 
 module.exports = (epilogue, models) => {
-  epilogue.resource({
+  const resource = epilogue.resource({
     model: models.Version,
     endpoints: ["/versions", "/versions/:id"]
-  })
+  });
+
+  resource
     .all
     .auth(epilogueAuth);
+
+  resource.create.write.before((req, res, context) => {
+    req.body.file = (req.files || {}).file;
+    return context.continue;
+  });
 }
