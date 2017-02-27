@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "NODE_ENV=test mocha --recursive --compilers js:babel-core/register"
+    "test": "NODE_ENV=test mocha --recursive --compilers js:babel-core/register",
+    "migrate": "sequelize db:migrate"
   },
   "author": "Dave Stevens <dave@origamidinosaur.co.uk>",
   "license": "ISC",
