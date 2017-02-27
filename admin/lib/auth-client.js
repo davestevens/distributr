@@ -5,7 +5,7 @@ import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK } from "admin-on-rest";
 export default (type, params) => {
   if (type === AUTH_LOGIN) {
     const { username, password } = params;
-    const request = new Request("/api/users/session", {
+    const request = new Request("/api/admin/session", {
       method: "POST",
       body: JSON.stringify({ email: username, password }),
       headers: { "Content-Type": "application/json" }
