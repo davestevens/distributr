@@ -12,7 +12,7 @@ import Versions from "../components/Versions";
 
 const App = () => (
   <Admin authClient={ authClient }
-         restClient={ restClient("/api/users") }
+         restClient={ restClient("/api/admin") }
          title="Distributr">
     <Resource name="apps" { ...Apps } />
     <Resource name="segments" { ...Segments } />

@@ -25,8 +25,8 @@ Manage your enterprise/development apps.
 | /api/segments/apps     | GET    | Lists available Apps.                                             |
 | /api/segments/apps/:id | GET    | Shows App.                                                        |
 
-### Users
+### Admin
 
-| Route                  | Method | Description                                               |
-| ---------------------- + ------ + --------------------------------------------------------- |
-| /api/users/session     | POST   | Log in as a `User`. `{ email: String, password: String }` |
+| Route                  | Method | Description                                                |
+| ---------------------- + ------ + ---------------------------------------------------------- |
+| /api/admin/session     | POST   | Log in as an `User`. `{ email: String, password: String }` |

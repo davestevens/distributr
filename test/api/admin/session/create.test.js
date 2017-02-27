@@ -5,7 +5,7 @@ import models from "../../../../models";
 import request from "supertest";
 
 describe("API: Session", () => {
-  describe("POST /api/users/session", () => {
+  describe("POST /api/admin/session", () => {
     let user;
 
     before(done => {
@@ -24,7 +24,7 @@ describe("API: Session", () => {
     context("with valid credentials", () => {
       it("returns a valid token", (done) => {
         request(api)
-          .post("/api/users/session")
+          .post("/api/admin/session")
           .send({
             email: "test@example.com",
             password: "12345678"
@@ -45,7 +45,7 @@ describe("API: Session", () => {
     context("with invalid credentials", () => {
       it("returns validation errors", (done) => {
         request(api)
-          .post("/api/users/session")
+          .post("/api/admin/session")
           .send({
             email: "test@example.com",
             passphrase: "incorrect"
