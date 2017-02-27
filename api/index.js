@@ -15,6 +15,8 @@ api.use(morgan("combined"));
 api.use(cors());
 api.use(bodyParser.json());
 
+api.use("/api/segments", require("./segments"));
+
 api.use(errorHandler);
 
 module.exports = api;

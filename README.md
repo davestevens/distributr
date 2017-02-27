@@ -14,3 +14,11 @@ Manage your enterprise/development apps.
 ## Test
 
 `npm test`
+
+## API
+
+### Segments
+
+| Route                 | Method | Description                                                       |
+| --------------------- + ------ + ----------------------------------------------------------------- |
+| /api/segments/session | POST   | Log in as a `Segment`. `{ username: String, passphrase: String }` |
