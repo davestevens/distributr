@@ -1,5 +1,8 @@
 "use strict";
 
+require("dotenv").config();
+require("../lib/sequelize-extensions");
+
 import chai from "chai";
 import sinon from "sinon";
 import sinonChai from "sinon-chai";

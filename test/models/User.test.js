@@ -1,6 +1,7 @@
 "use strict";
 
 import models from "../../models";
+import jwt from "jsonwebtoken";
 
 describe("Models: User", () => {
   const User = models.User;
@@ -81,6 +82,36 @@ describe("Models: User", () => {
         const actual = user.authenticate("incorrect_password");
 
         expect(actual).to.equal(false);
+      });
+    });
+  });
+
+  describe("#buildToken", () => {
+    let user;
+
+    before((done) => {
+      User.create({ email: "test2@example.com", password: "password" })
+        .then(u => user = u)
+        .then(() => done())
+        .catch(done);
+    });
+
+    after((done) => {
+      user.destroy()
+        .then(() => done())
+        .catch(done);
+    });
+
+    it("returns a signed jsonwebtoken", (done) => {
+      const token = user.buildToken();
+
+      jwt.verify(token, process.env.SECRET, (error, decoded) => {
+        if (error) return done(error);
+
+        expect(decoded.id).to.equal(user.id);
+        expect(decoded.scopes).to.contain("user");
+
+        done();
       });
     });
   });

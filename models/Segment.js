@@ -1,5 +1,7 @@
 "use strict";
 
+const jwt = require("jsonwebtoken");
+
 module.exports = (sequelize, DataTypes) => {
   const Segment = sequelize.define(
     "Segment",
@@ -40,6 +42,16 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: "segment_id",
             otherKey: "app_id"
           });
+        }
+      },
+      instanceMethods: {
+        buildToken: function() {
+          const scopes = ["segment"];
+
+          return jwt.sign(
+            { scopes: scopes, id: this.id },
+            process.env.SECRET
+          )
         }
       },
       tableName: "segments",

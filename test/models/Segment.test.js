@@ -1,6 +1,7 @@
 "use strict";
 
 import models from "../../models";
+import jwt from "jsonwebtoken";
 
 describe("Model: Segment", () => {
   const Segment = models.Segment;
@@ -107,6 +108,36 @@ describe("Model: Segment", () => {
             done();
           })
           .catch(done);
+      });
+    });
+  });
+
+  describe("#buildToken", () => {
+    let segment;
+
+    before((done) => {
+      Segment.create({ username: "username", passphrase: "passphrase" })
+        .then(s => segment = s)
+        .then(() => done())
+        .catch(done);
+    });
+
+    after((done) => {
+      segment.destroy()
+        .then(() => done())
+        .catch(done);
+    });
+
+    it("returns a signed jsonwebtoken", (done) => {
+      const token = segment.buildToken();
+
+      jwt.verify(token, process.env.SECRET, (error, decoded) => {
+        if (error) return done(error);
+
+        expect(decoded.id).to.equal(segment.id);
+        expect(decoded.scopes).to.contain("segment");
+
+        done();
       });
     });
   });

@@ -1,6 +1,7 @@
 "use strict";
 
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -47,6 +48,14 @@ module.exports = (sequelize, DataTypes) => {
             return this;
           else
             return false;
+        },
+        buildToken: function() {
+          const scopes = ["user"];
+
+          return jwt.sign(
+            { scopes: scopes, id: this.id },
+            process.env.SECRET
+          )
         },
         toJSON: function() {
           let values = this.dataValues;
