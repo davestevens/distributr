@@ -2,7 +2,8 @@
 
 require("dotenv").config();
 
-const server = require("http").Server();
+const api = require("./api");
+const server = require("http").Server(api);
 
 server.listen(process.env.PORT, process.env.ADDRESS, function(error) {
   if (error) return console.error(error)
