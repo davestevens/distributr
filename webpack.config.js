@@ -9,6 +9,10 @@ module.exports = {
     "admin": [
       "webpack-hot-middleware/client?reload=true",
       "./admin/index.jsx"
+    ],
+    "app": [
+      "webpack-hot-middleware/client?reload=true",
+      "./app/index.jsx"
     ]
   },
   output: {
