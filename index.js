@@ -4,6 +4,9 @@ require("dotenv").config();
 
 const api = require("./api");
 const server = require("http").Server(api);
+const frontend = require("./frontend");
+
+frontend(api);
 
 server.listen(process.env.PORT, process.env.ADDRESS, function(error) {
   if (error) return console.error(error)
