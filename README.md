@@ -24,3 +24,9 @@ Manage your enterprise/development apps.
 | /api/segments/session  | POST   | Log in as a `Segment`. `{ username: String, passphrase: String }` |
 | /api/segments/apps     | GET    | Lists available Apps.                                             |
 | /api/segments/apps/:id | GET    | Shows App.                                                        |
+
+### Users
+
+| Route                  | Method | Description                                               |
+| ---------------------- + ------ + --------------------------------------------------------- |
+| /api/users/session     | POST   | Log in as a `User`. `{ email: String, password: String }` |

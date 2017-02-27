@@ -16,6 +16,7 @@ api.use(cors());
 api.use(bodyParser.json());
 
 api.use("/api/segments", require("./segments"));
+api.use("/api/users", require("./users"));
 
 api.use(errorHandler);
 
