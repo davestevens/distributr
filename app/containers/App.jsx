@@ -21,8 +21,7 @@ const App = () => (
       <Grid>
         <Row>
           <Col xs={ 12 }
-               sm={ 8 } smOffset={ 2 }
-               md={ 6 } mdOffset={ 3 }>
+               sm={ 10 } smOffset={ 1 }>
             <Auth>
               <Router history={ hashHistory } routes={ routes } />
             </Auth>
