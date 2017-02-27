@@ -1,15 +1,15 @@
 "use strict";
 
 module.exports = (sequelize, DataTypes) => {
-  const App = sequelize.define(
-    "App",
+  const Segment = sequelize.define(
+    "Segment",
     {
       id: {
         type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4
       },
-      name: {
+      username: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -18,31 +18,12 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      description: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        validate: {
-          notEmpty: {
-            msg: "is required"
-          }
-        }
-      },
-      identifier: {
+      passphrase: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
             msg: "is required"
-          }
-        }
-      },
-      kind: {
-        type: DataTypes.ENUM("android", "ios"),
-        allowNull: false,
-        validate: {
-          isIn: {
-            args: [["android", "ios"]],
-            msg: "is not valid"
           }
         }
       }
@@ -50,20 +31,29 @@ module.exports = (sequelize, DataTypes) => {
     {
       classMethods: {
         associate: (models) => {
-          App.belongsToMany(models.Segment, {
-            as: "segments",
+          Segment.belongsToMany(models.App, {
+            as: "apps",
             through: {
               model: models.AppSegment,
               unique: true
             },
-            foreignKey: "app_id",
-            otherKey: "segment_id"
+            foreignKey: "segment_id",
+            otherKey: "app_id"
           });
         }
       },
-      tableName: "apps"
+      tableName: "segments",
+      validate: {
+        usernameRegistered: function(next) {
+          Segment.find({ where: { username: this.username } })
+            .then(segment => {
+              const anotherSegment = segment && segment.id != this.id;
+              next(anotherSegment ? "is already in use" : null)
+            });
+        }
+      }
     }
   );
 
-  return App;
+  return Segment;
 }

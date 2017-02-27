@@ -78,4 +78,47 @@ describe("Models: App", () => {
       });
     });
   });
+
+  describe("Association", () => {
+    describe("Segments", () => {
+      let app, segment
+
+      before(done => {
+        App.create({
+          name: "Example App",
+          description: "App Description",
+          identifier: "com.identifier",
+          kind: "android"
+        })
+          .then(a => {
+            app = a;
+            return models.Segment.create({
+              username: "username",
+              passphrase: "passphrase"
+            })
+              .then(s => {
+                segment = s;
+                return app.addSegment(segment);
+              });
+          })
+          .then(() => done())
+          .catch(done);
+      });
+
+      after(done => {
+        Promise.all([app.destroy(), segment.destroy()])
+          .then(() => done())
+          .catch(done);
+      });
+
+      it("belongs to many Segments", (done) => {
+        app.getSegments()
+          .then(associatedSegments => {
+            expect(associatedSegments).to.have.length(1);
+            done();
+          })
+          .catch(done);
+      });
+    });
+  });
 });
