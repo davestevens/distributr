@@ -17,10 +17,13 @@ class Apps extends Component {
     const { loading } = this.props;
 
     return (
-      <ListGroup>
-        { loading && <Loading /> }
-        { this._apps() }
-      </ListGroup>
+      <div>
+        <h2>Apps</h2>
+        <ListGroup>
+          { loading && <Loading /> }
+          { this._apps() }
+        </ListGroup>
+      </div>
     );
   }
 
