@@ -9,7 +9,7 @@ const SegmentCreate = (props) => (
   <Create title="Create a Segment" {...props }>
     <SimpleForm>
       <TextInput source="username" />
-      <TextInput source="passphrase" type="password" />
+      <TextInput source="passphrase" />
     </SimpleForm>
   </Create>
 );

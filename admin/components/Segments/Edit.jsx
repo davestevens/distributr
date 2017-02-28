@@ -18,7 +18,7 @@ const SegmentEdit = (props) => (
     <SimpleForm>
       <DisabledInput source="id" />
       <TextInput source="username" />
-      <TextInput source="passphrase" type="password" />
+      <TextInput source="passphrase" />
     </SimpleForm>
   </Edit>
 );
