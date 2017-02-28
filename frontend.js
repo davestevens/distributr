@@ -1,27 +1,8 @@
 "use strict";
 
-const webpack = require("webpack");
-const webpackDevMiddleware = require("webpack-dev-middleware");
-const webpackHotMiddleware = require("webpack-hot-middleware");
-const config = require("./webpack.config");
-const path = require("path");
+const env = process.env.NODE_ENV == "development" ? "dev" : "prod";
+const frontend = require(`./frontend.${ env }.js`);
 
 module.exports = (api) => {
-  const compiler = webpack(config)
-  api.use(
-    webpackDevMiddleware(
-      compiler,
-      {
-        noInfo: true,
-        publicPath: config.output.publicPath
-      }
-    )
-  );
-  api.use(webpackHotMiddleware(compiler));
-
-  const admin = path.join(__dirname, "admin", "index.html");
-  api.get("/admin*", (req, res) => res.sendFile(admin));
-
-  const app = path.join(__dirname, "app", "index.html");
-  api.get("/*", (req, res) => res.sendFile(app));
+  frontend(api);
 }
