@@ -21,13 +21,15 @@ The default view is the Segment view, this lists available Apps and allows downl
 
 ### Development
 
-```npm run migrate```
-```npm start```
+`npm run migrate`
+
+`npm start`
 
 ### Production
 
-```NODE_ENV=production npm run migrate```
-```NODE_ENV=production npm start```
+`NODE_ENV=production npm run migrate`
+
+`NODE_ENV=production npm start`
 
 NB: You can use an [ngrok](https://ngrok.com/) tunnel to allow downloading of iOS applications.
 
@@ -40,7 +42,7 @@ NB: You can use an [ngrok](https://ngrok.com/) tunnel to allow downloading of iO
 ### Segments
 
 | Route                  | Method | Description                                                       |
-| ---------------------- + ------ + ----------------------------------------------------------------- |
+| ---------------------- | ------ | ----------------------------------------------------------------- |
 | /api/segments/session  | POST   | Log in as a `Segment`. `{ username: String, passphrase: String }` |
 | /api/segments/apps     | GET    | Lists available Apps.                                             |
 | /api/segments/apps/:id | GET    | Shows App.                                                        |
@@ -48,7 +50,7 @@ NB: You can use an [ngrok](https://ngrok.com/) tunnel to allow downloading of iO
 ### Admin
 
 | Route                  | Method | Description                                                |
-| ---------------------- + ------ + ---------------------------------------------------------- |
+| ---------------------- | ------ | ---------------------------------------------------------- |
 | /api/admin/session     | POST   | Log in as an `User`. `{ email: String, password: String }` |
 
 Includes CRUD for all Models (`App`:/api/admin/apps, `AppSegment`:/api/admin/app-segments, `Segment`:/api/admin/segments, `User`/api/admin/users, `Version`/api/admin/versions) using [Epilogue](https://github.com/dchester/epilogue).
