@@ -6,6 +6,8 @@ Manage your enterprise/development apps.
 
 1. Copy `.env.example` to `.env`, update values.
 2. Copy `config/config.json.example` to `config/config.json`, update values.
+3. Migrate database `npm run migrate`.
+4. Seed database `npm run seed`. Creates a User (user@example.com:password).
 
 ## Running
 
