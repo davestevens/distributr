@@ -33,6 +33,9 @@ class Login extends Component {
                    validationState={ hasError ? "error" : null }>
           <ControlLabel>Username</ControlLabel>
           <FormControl type="text"
+                       autoCorrect="off"
+                       autoCapitalize="none"
+                       autoComplete="off"
                        placeholder="Username"
                        onChange={ (event) => this.setState({ username: event.target.value }) } />
           { hasError && <HelpBlock>{ errorMessage }</HelpBlock> }
