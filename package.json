@@ -8,7 +8,9 @@
     "test": "NODE_ENV=test mocha --recursive --compilers js:babel-core/register",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed",
-    "build": "webpack -p --config webpack.config.prod.js"
+    "build": "webpack -p --config webpack.config.prod.js",
+    "commit-frontend": "if [[ -n $(git status static --porcelain) ]]; then git add -A static && git commit -m 'Includes frontend build.'; fi",
+    "preversion": "npm run build && npm run commit-frontend"
   },
   "author": "Dave Stevens <dave@origamidinosaur.co.uk>",
   "license": "ISC",
