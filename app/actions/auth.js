@@ -18,7 +18,7 @@ export const clearAuth = () => {
   localStorage.removeItem(AUTH_KEY);
 }
 
-const logout = (errorMessage) => {
+export const logout = (errorMessage) => {
   clearAuth();
   return {
     type: LOGOUT,
