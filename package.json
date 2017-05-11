@@ -42,7 +42,6 @@
     "redux-api-middleware": "^1.0.2",
     "redux-form": "^6.5.0",
     "redux-thunk": "^2.2.0",
-    "sequelize-cli": "^2.5.1",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "supertest": "^2.0.1",
@@ -63,6 +62,7 @@
     "morgan": "^1.8.0",
     "pug": "^2.0.0-beta11",
     "sequelize": "^3.30.1",
+    "sequelize-cli": "^2.5.1",
     "sqlite3": "^3.1.8"
   }
 }
