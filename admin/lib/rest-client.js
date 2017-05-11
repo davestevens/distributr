@@ -37,7 +37,7 @@ export default (apiUrl, httpClient = fetchJson) => {
     if (!options.headers) {
         options.headers = new Headers({ Accept: 'application/json' });
     }
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('admin-token')
     options.headers.set('x-access-token', token);
     switch (type) {
     case GET_LIST: {

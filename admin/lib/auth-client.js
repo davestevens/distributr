@@ -18,15 +18,15 @@ export default (type, params) => {
         return response.json();
       })
       .then(({ token }) => {
-        localStorage.setItem("token", token);
+        localStorage.setItem("admin-token", token);
       });
   }
   if (type === AUTH_LOGOUT) {
-    localStorage.removeItem("token");
+    localStorage.removeItem("admin-token");
     return Promise.resolve();
   }
   if (type === AUTH_CHECK) {
-    return localStorage.getItem("token") ? Promise.resolve() : Promise.reject();
+    return localStorage.getItem("admin-token") ? Promise.resolve() : Promise.reject();
   }
   return Promise.resolve();
 }
